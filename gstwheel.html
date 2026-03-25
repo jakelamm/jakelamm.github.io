@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>G Street Wheel — Jake Lamm</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&family=Archivo+Narrow:ital,wght@1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #00a2ff;
+      --orange: #ff5d00;
+      --grey-light: #e8e8e8;
+      --grey-mid:   #b0b0b0;
+      --black: #111111;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: static;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 60px;
+      background: rgba(255,255,255,0.95);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .logo:hover { color: var(--blue); }
+
+    nav { display: flex; gap: 8px; }
+
+    nav a {
+      font-weight: 300;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      padding: 6px 10px;
+      transition: color 0.18s;
+    }
+
+    nav a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 80px;
+      gap: 6vw;
+    }
+
+    .hero-text {
+      flex-shrink: 0;
+      width: 28vw;
+    }
+
+    .hero-image {
+      flex: 1;
+      aspect-ratio: 4 / 3;
+      background: var(--grey-light);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-mid);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      align-self: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 6vw, 8.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      color: var(--black);
+    }
+
+    .hero-text .sub {
+      font-size: clamp(1.1rem, 2.2vw, 2.8rem);
+      font-weight: 400;
+      color: var(--orange);
+      margin-top: 22px;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    /* ── ORANGE DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 6px;
+      background: var(--orange);
+    }
+
+    /* ── PROJECT META ── */
+    .project-meta {
+      width: 80vw;
+      margin: 80px auto 140px;
+      display: flex;
+      gap: 6vw;
+      align-items: flex-start;
+    }
+
+    .meta-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .meta-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+    }
+
+    .meta-value {
+      font-size: clamp(0.85rem, 1vw, 1rem);
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    /* ── MAIN IMAGE ── */
+    .project-image-full {
+      width: 80vw;
+      margin: 0 auto 100px;
+      aspect-ratio: 16 / 9;
+      background: var(--grey-light);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-mid);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION CONTENT ── */
+    .project-section {
+      width: 80vw;
+      margin: 0 auto 100px;
+      display: flex;
+      gap: 6vw;
+      align-items: flex-start;
+    }
+
+    .project-section.reverse { flex-direction: row-reverse; }
+
+    .section-heading {
+      width: 28vw;
+      flex-shrink: 0;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--black);
+    }
+
+    .section-heading h2 span { color: var(--orange); }
+
+    .section-body {
+      flex: 1;
+      padding-top: 0;
+    }
+
+    .section-body p {
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+
+    /* ── DUAL IMAGES ── */
+    .dual-images {
+      width: 80vw;
+      margin: 0 auto 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3vw;
+    }
+
+    .project-img-placeholder {
+      background: var(--grey-light);
+      border-radius: 4px;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-mid);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── BANNER ── */
+    .project-banner {
+      position: relative;
+      background: var(--orange);
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 100px;
+    }
+
+    .project-banner h3 {
+      width: 80vw;
+      font-size: clamp(1.4rem, 3vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    /* ── BOTTOM DUAL IMAGES ── */
+    .bottom-images {
+      width: 80vw;
+      margin: 0 auto 140px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3vw;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+      header { padding: 18px 32px; }
+
+      #hero { padding: 0 32px 60px; gap: 0; flex-direction: column; align-items: flex-start; justify-content: flex-end; }
+      .hero-image { display: flex; width: 100%; margin-bottom: 40px; align-self: auto; order: 1; }
+      .hero-text { flex-shrink: 0; order: 2; width: auto; }
+      .hero-text h1 { white-space: nowrap; }
+
+      .project-meta {
+        width: 84vw;
+      }
+
+      .project-image-full,
+      .dual-images,
+      .bottom-images,
+      .project-section {
+        width: 84vw;
+      }
+
+      .project-section {
+        flex-direction: column !important;
+        gap: 28px;
+      }
+
+      .section-heading {
+        width: 100%;
+      }
+
+      .dual-images,
+      .bottom-images {
+        grid-template-columns: 1fr;
+      }
+
+      .project-banner {
+        justify-content: center;
+      }
+
+      .project-banner h3 {
+        width: 84vw;
+        font-size: clamp(2rem, 8vw, 4rem);
+        text-align: center;
+      }
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: transform 0.22s, opacity 0.22s, background 0.18s;
+    }
+
+    .hamburger:hover span,
+    .hamburger.open span { background: var(--blue); }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      background: var(--white);
+      padding: 16px 32px 24px;
+      gap: 16px;
+      z-index: 99;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-weight: 300;
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .mobile-menu a:hover { color: var(--blue); }
+
+    @media (orientation: portrait) {
+      header { position: relative; }
+      .hamburger { display: flex; }
+      nav { display: none; }
+    }
+
+    footer {
+      background: var(--grey-light);
+      padding: 30px 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .back-to-top {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .back-to-top:hover { color: var(--blue); }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--grey-mid);
+      letter-spacing: 0.05em;
+      width: 100%;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="logo" href="index.html">Jake Lamm</a>
+    <nav>
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Work</a>
+      <a href="index.html#about">About</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <h1>G Street<br>Wheel</h1>
+      <p class="sub">Connecting a Local Community</p>
+    </div>
+    <div class="hero-image">Hero / Homepage Screenshot</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- META -->
+  <div class="project-meta">
+    <div class="meta-block">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Interactive Experience</span>
+    </div>
+    <div class="meta-block">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Designer & Developer</span>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="project-section">
+    <div class="section-heading">
+      <h2>Project<br>Brief</h2>
+    </div>
+    <div class="section-body">
+      <p>G Street Wheel is an interactive installation designed to bring a local community closer together. Built around the metaphor of a spinning wheel, the experience invites neighbors to contribute, connect, and discover what they share with the people around them.</p>
+      <p>The goal was to create something that felt alive — a digital and physical touchpoint where community members could leave their mark and see how their voices fit into the larger whole.</p>
+    </div>
+  </div>
+
+  <!-- DUAL IMAGES -->
+  <div class="dual-images">
+    <div class="project-img-placeholder">Wheel Interface</div>
+    <div class="project-img-placeholder">Community Input View</div>
+  </div>
+
+  <!-- APPROACH BANNER -->
+  <div class="project-banner">
+    <h3>Designing for Connection</h3>
+  </div>
+
+  <!-- APPROACH -->
+  <div class="project-section reverse">
+    <div class="section-heading">
+      <h2>The<br>Approach</h2>
+    </div>
+    <div class="section-body">
+      <p>The design centers on participation — the wheel metaphor naturally draws people in, giving everyone an equal spoke in the experience. The interface was kept intentionally simple so that anyone, regardless of technical comfort, could engage with it immediately.</p>
+      <p>Interactions were layered to reward curiosity: the more a user explored, the more connections and contributions from their community revealed themselves, reinforcing the sense of shared space and belonging.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM IMAGES -->
+  <div class="bottom-images">
+    <div class="project-img-placeholder">Contribution Flow</div>
+    <div class="project-img-placeholder">Community Map View</div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#hero" class="back-to-top">Back to Top</a>
+    <p class="footer-copy">© 2026 Jake Lamm</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function smoothScrollTo(target, duration) {
+      const start = window.scrollY;
+      const end = target.getBoundingClientRect().top + window.scrollY;
+      const distance = end - start;
+      let startTime = null;
+      function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, start + distance * ease(progress));
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          smoothScrollTo(target, 1400);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
