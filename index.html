@@ -103,15 +103,6 @@
       width: calc(25vw + 25vw + 4vw);
     }
 
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--grey-mid);
-      margin-bottom: 4vw;
-    }
-
     .work-grid {
       display: flex;
       flex-direction: column;
@@ -131,15 +122,24 @@
       display: block;
       background: var(--grey-light);
       width: 25vw;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
       border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
       text-decoration: none;
-      border: none;
+      border: 2px solid var(--black);
       padding: 0;
       flex-shrink: 0;
       transition: transform 0.22s ease;
+    }
+
+    .work-card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .work-card:hover { transform: scale(1.01); }
@@ -207,14 +207,6 @@
     .about-heading {
       width: 38vw;
       flex-shrink: 0;
-    }
-
-    .about-heading h2 {
-      font-size: clamp(2rem, 4vw, 5.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      color: var(--black);
     }
 
     .about-body {
@@ -444,15 +436,6 @@
         padding: 20px 24px;
         opacity: 0.8;
       }
-        flex-direction: column;
-        align-items: stretch;
-        gap: 32px;
-        padding: 80px 0 48px;
-      }
-
-      .about-bio {
-        width: 100%;
-      }
 
       .about-education {
         width: 100%;
@@ -491,20 +474,20 @@
     <div class="work-inner">
       <div class="work-grid">
         <div class="work-row">
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="baylasoul.html" class="work-card"><img src="images/baylahero2.svg" alt="Project 1" class="work-card-img"><div class="work-card-overlay"><h3>Bay La Soul</h3><p>UI/UX</p></div></a>
+          <a href="gstwheel.html" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 2" class="work-card-img"><div class="work-card-overlay"><h3>G Street Wheel</h3><p>UI/UX, Experience Design</p></div></a>
         </div>
         <div class="work-row">
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 3" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 4" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
         </div>
         <div class="work-row">
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 5" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 6" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
         </div>
         <div class="work-row">
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
-          <a href="#" class="work-card"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 7" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
+          <a href="#" class="work-card"><img src="https://placehold.co/800x500/e8e8e8/e8e8e8" alt="Project 8" class="work-card-img"><div class="work-card-overlay"><h3>Sample Text</h3><p>DesDesc</p></div></a>
         </div>
       </div>
     </div>
@@ -522,6 +505,7 @@
             <p>
               Hello again, I'm Jake, a UI/UX designer and researcher from Silicon Valley. I graduated from UC Davis in March 2025 with a B.A. in Design, focusing on brand identity and UI/UX. I believe in an iterative, human-centered design process where the needs of the users are the driving force behind every decision.
             </p>
+            <p>This is a placeholder.</p>
           </div>
           <div class="about-education">
             <h4>Education</h4>
