@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bay La Soul — Jake Lamm</title>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&family=Archivo+Narrow:ital,wght@1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&family=Archivo+Narrow:ital,wght@1,300&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,6 +19,8 @@
 
     html { scroll-behavior: auto; }
 
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: capitalize; }
+
     body {
       font-family: 'Archivo', sans-serif;
       background: var(--white);
@@ -32,13 +34,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 22px 60px;
+      padding: 32px 60px 22px;
       background: rgba(255,255,255,0.95);
     }
 
     .logo {
       font-weight: 700;
-      font-size: 1.7rem;
+      font-size: 2.1rem;
       letter-spacing: -0.02em;
       color: var(--black);
       text-decoration: none;
@@ -51,7 +53,7 @@
 
     nav a {
       font-weight: 300;
-      font-size: 1.05rem;
+      font-size: 1.55rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--black);
@@ -64,32 +66,30 @@
 
     /* ── HERO ── */
     #hero {
-      min-height: 70vh;
       display: flex;
-      align-items: flex-end;
-      padding: 0 60px 80px;
-      gap: 6vw;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      height: calc(100vh - 90px);
     }
 
     .hero-text {
       flex-shrink: 0;
       width: 28vw;
+      align-self: flex-end;
+      padding-bottom: calc(5vh + 30px);
     }
 
     .hero-image {
-      flex: 1;
+      height: calc(100vh - 90px - 10vh - 60px);
+      width: auto;
       aspect-ratio: 4 / 3;
-      background: var(--grey-light);
+      object-fit: cover;
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--grey-mid);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      display: block;
+      flex-shrink: 0;
       align-self: center;
+
     }
     .hero-text h1 {
       font-size: clamp(2.8rem, 6vw, 8.5rem);
@@ -105,6 +105,14 @@
       color: var(--orange);
       margin-top: 22px;
       letter-spacing: -0.02em;
+    }
+
+    .prototype-link {
+      color: #111111;
+    }
+
+    .prototype-link:hover {
+      color: #00a2ff;
     }
 
     /* ── ORANGE DIVIDER ── */
@@ -141,23 +149,6 @@
       font-size: clamp(0.85rem, 1vw, 1rem);
       font-weight: 400;
       color: var(--black);
-    }
-
-    /* ── MAIN IMAGE ── */
-    .project-image-full {
-      width: 80vw;
-      margin: 0 auto 100px;
-      aspect-ratio: 16 / 9;
-      background: var(--grey-light);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--grey-mid);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
     }
 
     /* ── SECTION CONTENT ── */
@@ -209,39 +200,36 @@
     }
 
     .project-img-placeholder {
-      background: var(--grey-light);
-      border-radius: 4px;
+      display: block;
+      width: 100%;
       aspect-ratio: 4 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--grey-mid);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      object-fit: cover;
+      border-radius: 4px;
+      /* border: 2px solid var(--black); */
     }
 
     /* ── BANNER ── */
     .project-banner {
       position: relative;
       background: var(--orange);
-      height: 120px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      padding: 0;
       margin-bottom: 100px;
     }
 
     .project-banner h3 {
-      width: 80vw;
-      font-size: clamp(1.4rem, 3vw, 4rem);
+      font-size: clamp(2rem, 5.5vw, 7rem);
       font-weight: 900;
       letter-spacing: -0.03em;
+      line-height: 1;
       color: var(--white);
+      padding: 0;
+      margin: 0 0 0 -10px;
     }
 
-    /* ── BOTTOM DUAL IMAGES ── */
+    .design-image-mobile { display: none; }
     .bottom-images {
       width: 80vw;
       margin: 0 auto 140px;
@@ -250,14 +238,58 @@
       gap: 3vw;
     }
 
+    /* ── DESIGN SECTION (wireframe + prototype + tall image) ── */
+    .design-section {
+      width: 80vw;
+      margin: 0 auto 140px;
+      display: flex;
+      gap: 6vw;
+      align-items: flex-start;
+    }
+
+    .design-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .design-block h2 {
+      font-size: clamp(2rem, 4vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .design-block p {
+      font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+      font-weight: 400;
+      line-height: 1.8;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+
+    .design-image {
+      width: 40vw;
+      height: auto;
+      flex-shrink: 0;
+      object-fit: cover;
+      border-radius: 4px;
+      /* border: 2px solid var(--black); */
+      display: block;
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 700px) {
       header { padding: 18px 32px; }
 
       #hero { padding: 0 32px 60px; gap: 0; flex-direction: column; align-items: flex-start; justify-content: flex-end; }
-      .hero-image { display: flex; width: 100%; margin-bottom: 40px; align-self: auto; order: 1; }
-      .hero-text { flex-shrink: 0; order: 2; width: auto; }
+      .hero-image { display: flex; width: auto; height: 40vh; margin-bottom: 40px; align-self: auto; order: 1; border: none; }
+      .hero-text { flex-shrink: 0; order: 2; width: 100%; padding-bottom: 0; text-align: right; }
       .hero-text h1 { white-space: nowrap; }
+      header { background: #ffffff; }
 
       .project-meta {
         width: 84vw;
@@ -284,9 +316,20 @@
         grid-template-columns: 1fr;
       }
 
-      .project-banner {
-        justify-content: center;
+      .design-section {
+        flex-direction: column;
+        width: 84vw;
+        gap: 40px;
       }
+
+      .design-left {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .design-image { display: none; }
+      .design-image-mobile { display: block; width: 100% !important; aspect-ratio: 4/3; }
 
       .project-banner h3 {
         width: 84vw;
@@ -413,7 +456,7 @@
       <h1>Bay La Soul</h1>
       <p class="sub">Catering to the Soul</p>
     </div>
-    <div class="hero-image">Hero / Homepage Screenshot</div>
+    <img src="images/baylahero.png" alt="Hero / Homepage Screenshot" class="hero-image" style="height: calc(100vh - 90px - 10vh - 60px); width: auto; aspect-ratio: 4/3;">
   </section>
 
   <div class="divider"></div>
@@ -430,43 +473,66 @@
     </div>
   </div>
 
-  <!-- OVERVIEW -->
+<!-- PROJECT BRIEF -->
   <div class="project-section">
     <div class="section-heading">
       <h2>Project<br>Brief</h2>
     </div>
     <div class="section-body">
-      <p>Bay La Soul is the personal website for a chef building their presence online — a place to tell the story behind the food, share a menu, and invite people to reach out for events and private dining.</p>
-      <p>The goal was to create something that felt as warm and considered as the food itself: a site with personality, texture, and an approachable sense of craft.</p>
+      <p>Bay La Soul is a personal site for Darius, a chef looking to expand the online presence of his catering services. A place to tell the story behind the food, explore a sample of the dishes, and an invitation to schedule events.<br>The goal was to create something that represented Darius’s identity as a chef, a blend of Latin, Asian, and Soul foods.</p>
+      <p>You can view the full prototype <a href="https://baylasoul.github.io/" target="_blank" class="prototype-link">here.</a></p>
     </div>
   </div>
 
-  <!-- DUAL IMAGES -->
-  <div class="dual-images">
-    <div class="project-img-placeholder">Menu Page</div>
-    <div class="project-img-placeholder">Mobile View</div>
+  <!-- PROCESS BANNER -->
+  <div class="project-banner">
+    <h3 style="margin-left: 0;">The Process</h3>
   </div>
 
-  <!-- APPROACH BANNER -->
+  <!-- INTERVIEW -->
+  <div class="project-section">
+    <div class="section-heading">
+      <h2>Interview</h2>
+      <div class="section-body" style="margin-top: 24px;">
+        <p>Before Darius was a client, he was a friend. The idea for the Bay La Soul website started as a conversation; he had been catering for small private venues, but wanted to expand his online presence past an Instagram account. In our discussion, we covered what it was that he was looking for: the look and feel of the website, his target audience, and the features he wanted.</p>
+      </div>
+    </div>
+    <img src="images/bayLaBrandIdentity.png" alt="Color Palette" class="project-img-placeholder" style="width: 40vw; aspect-ratio: 4/3;">
+  </div>
+
+  <!-- KEY TAKEAWAYS -->
+  <div class="project-section reverse">
+    <div class="section-heading">
+      <h2>Key<br>Features</h2>
+      <div class="section-body" style="margin-top: 24px;">
+        <p>Darius wanted something that reflected him as a chef. Something that was clean and efficient, but not afraid to experiment with something new. One of the first things he mentioned was to include a selection of dishes so that viewers could see what kinds of dishes he liked to make, if not try a few of them for themselves. As Darius is a chef and has little to no coding experience, he wanted the website to be simple not only for ease of use, but so it would be easier on him to update as he cycled dishes in and out.</p>
+      </div>
+    </div>
+    <img src="images/bayLaCarousel.png" alt="Cookbook Carousel" class="project-img-placeholder" style="width: 40vw; aspect-ratio: 4/3;">
+  </div>
+
+  <!-- DESIGN BANNER -->
   <div class="project-banner">
     <h3>Designing the Soul</h3>
   </div>
 
-  <!-- APPROACH -->
-  <div class="project-section reverse">
-    <div class="section-heading">
-      <h2>The<br>Approach</h2>
+  <!-- DESIGNING THE SOUL: WIREFRAME + PROTOTYPE + TALL IMAGE -->
+  <div class="design-section">
+    <div class="design-left">
+      <div class="design-block">
+        <h2>Wire&shy;frame</h2>
+        <p>Early wireframes focused on the single page layout, establishing visual hierarchy. The layout was left sparse to let the food do most of the work.</p>
+        <p>Multiple iterations were reviewed with Darius to ensure everything flowed how he wanted.</p>
+      </div>
+      <img src="images/bayLaWireframe.png" alt="Wireframe" class="design-image-mobile" style="width: 40vw; object-fit: cover;">
+      <div class="design-block">
+        <h2>Proto&shy;type</h2>
+        <p>The design is intentionally simple, with a minimal color palette and everything laid out on a single page. The final prototype brings together the cookbook, contact information for Darius, and a biography of the chef himself into one page.</p>
+      </div>
+      <img src="images/baylasoulphonemoc.png" alt="Phone Mock-up" class="project-img-placeholder" style="width: 100%; aspect-ratio: 4/3;">
+      <img src="images/baylavenues.png" alt="Recipe Page" class="project-img-placeholder" style="width: 100%; aspect-ratio: 4/3;">
     </div>
-    <div class="section-body">
-      <p>The design leans into warmth and simplicity — an earthy palette, generous white space, and typography that lets the food do the talking. Nothing here feels corporate or overdone.</p>
-      <p>Every section was built with easy updating in mind, so the chef can keep menus and event listings fresh without needing a developer on call.</p>
-    </div>
-  </div>
-
-  <!-- BOTTOM IMAGES -->
-  <div class="bottom-images">
-    <div class="project-img-placeholder">Contact Page</div>
-    <div class="project-img-placeholder">Events Page</div>
+    <img src="images/bayLaWireframe.png" alt="Wireframe" class="design-image" style="width: 40vw;">
   </div>
 
   <!-- FOOTER -->
